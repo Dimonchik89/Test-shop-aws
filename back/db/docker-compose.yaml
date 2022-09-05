@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  shop_db:
+    container_name: shop_db
+    environment:
+      POSTGRES_DB: shop_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    image: postgres:latest
+    ports: 
+      - 5436:5432
