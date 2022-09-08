@@ -17,7 +17,6 @@ const createToken = (id, email, role) => {
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
-
     if(!email || !password) {
         return res.status(400).json({ message: "fields are not filled" })
     }
@@ -51,7 +50,7 @@ const createUser = async (req, res) => {
     const cryptPassword = await bcrypt.hash(password, 10);
 
     const user = await sequelize.models.user.create({ email, password: cryptPassword, role })
-    const basket = await sequelize.models.basket.create({ userId: user.id })
+    const cart = await sequelize.models.cart.create({ userId: user.id })
     const token = createToken(user.id, user.email, user.role)
 
     return res.status(201).json({token})
@@ -64,16 +63,22 @@ const deleteUser = async (req, res) => {
         return res.status(406).json({ message: "User not found" })
     }
     const delUser = await sequelize.models.user.destroy({ where: { id }});
-    const delBasket = await sequelize.models.user.destroy({ where: { userId: id }})
+    const delCart = await sequelize.models.cart.destroy({ where: { userId: id }})
     if(!!delUser) {
         return res.status(200).json({ message: "Ok"})
     }
         return res.status(400).json({ message: "Error"})
 }
 
+const getAllUser = async (req, res) => {
+    const users = await sequelize.models.user.findAll();
+    // res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count')
+    return res.status(200).json(users)
+}
+
 const check = (req, res) => {
-    const { id, emai, role } = req?.user;
-    const token = createToken(id, emai, role)
+    const { id, email, role } = req?.user;
+    const token = createToken(id, email, role)
     return res.status(200).json({token})
 }
 
@@ -81,5 +86,6 @@ module.exports = {
     loginUser,
     createUser,
     deleteUser,
-    check
+    check,
+    getAllUser
 }

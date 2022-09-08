@@ -1,0 +1,39 @@
+.d-flex {
+    display: flex;
+}
+
+.d-column {
+    flex-direction: column;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.mt-64 {
+    margin-top: 6.4rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mx-1 {
+    margin: 0 1rem;
+}
+
+.align-center {
+    text-align: center;
+}

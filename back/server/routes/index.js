@@ -1,16 +1,16 @@
 const { Router } = require("express");
-const device = require("./device");
-const brand = require("./brand");
+const product = require("./product");
+const category = require("./category");
 const type = require("./type");
 const user = require("./user");
-const basket = require("./basket");
+const cart = require("./cart");
 
 const router = new Router();
 
-router.use("/device", device)
-router.use("/brand", brand)
+router.use("/device", product)
+router.use("/category", category)
 router.use("/type", type)
 router.use("/user", user)
-router.use("/basket", basket)
+router.use("/cart", cart)
 
 module.exports = router;

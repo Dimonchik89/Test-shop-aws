@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      user.hasOne(models.basket)
+      user.hasOne(models.cart)
     }
   }
   user.init({

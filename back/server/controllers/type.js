@@ -11,7 +11,14 @@ const createType = async (req, res) => {
     return res.status(201).json(type);
 }
 
+const delType = async (req, res) => {
+    const { id } = req.params;
+    const type = await sequelize.models.type.destroy({where: { id }})
+    return res.status(200).json({ message: "type destroy" })
+}
+
 module.exports = {
     getAllTypes,
-    createType
+    createType,
+    delType
 }

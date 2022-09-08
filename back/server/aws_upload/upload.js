@@ -17,14 +17,17 @@ const s3 = new S3Client({
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket:"newtechshop",
+        bucket: "newtechshop",
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {
-            cb(null, Date.now().toString())
+            const filename = Date.now().toString()
+            let fullPath = "images/" + filename;
+            // cb(null, Date.now().toString())
+            cb(null, fullPath)
         }
-    })
+    }),
 })
 
 module.exports = upload

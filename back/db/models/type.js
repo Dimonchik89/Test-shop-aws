@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class type extends Model {
     
     static associate(models) {
-      type.hasMany(models.device)
-      type.belongsToMany(models.brand, { through: models.type_brand})
+      type.hasMany(models.product)
+      type.belongsToMany(models.category, { through: models.type_category})
     }
   }
   type.init({
