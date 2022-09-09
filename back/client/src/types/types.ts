@@ -79,3 +79,14 @@ export interface IUserDecod {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface IProduct {
+    id: number;
+    name: string;
+    cost: number;
+    img: string;
+    typeId: number;
+    categoryId?: number;
+    createdAt: Date;
+    updatedAt: Date;
+}

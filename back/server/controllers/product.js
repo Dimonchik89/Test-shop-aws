@@ -7,8 +7,9 @@ const getAllProduct = async (req, res) => {
     limit = limit || 9;
     page = page || 1;
     let offset = page * limit;
-    const devices = await sequelize.models.device.findAndCountAll({ where: { offset, limit, ...tail }});
-    return res.status(200).json(devices)
+    // const products = await sequelize.models.product.findAndCountAll({ where: { offset, limit, ...tail }});
+    const products = await sequelize.models.product.findAll();
+    return res.status(200).json(products)
 }
 
 const getOneProduct = async (req, res) => {
@@ -19,7 +20,7 @@ const getOneProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
     let imgNameArr = [];
-    
+    console.log("file", req.files);
     try {
         const { name, cost, categoryId, typeId, info } = req.body;
 

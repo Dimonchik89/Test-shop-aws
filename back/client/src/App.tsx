@@ -9,7 +9,14 @@ import { checkActualUser } from './store/user';
 import { connect, ConnectedProps} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AppDispatch } from './store/store';
+
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+
+
 import './App.css';
+
+const queryClient = new QueryClient()
+
 
 const App: React.FC<HeaderProps> = ({checkActualUser}) => {
 
@@ -18,14 +25,17 @@ const App: React.FC<HeaderProps> = ({checkActualUser}) => {
   }, [])
 
   return (
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-        <Route index element={<Main/>}/>
-        <Route path="admin/*" element={<Admin/>}/>
-        <Route path="login" element={<Login/>}/>
-        <Route path="register" element={<Register/>}/>
-      </Route>
-    </Routes>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Main/>}/>
+          <Route path="admin/*" element={<Admin/>}/>
+          <Route path="login" element={<Login/>}/>
+          <Route path="register" element={<Register/>}/>
+        </Route>
+      </Routes>
+    </QueryClientProvider>
+
   );
 }
 

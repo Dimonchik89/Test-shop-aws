@@ -82,10 +82,26 @@ const check = (req, res) => {
     return res.status(200).json({token})
 }
 
+const getOneUser = async (req, res) => {
+    const { id } = req.params;
+    const user = await sequelize.models.user.findOne({ where: { id }})
+    return res.status(200).json(user)
+}
+
+const updateUser = async ( req, res ) => {
+    const { id } = req.params;
+    const { ...args } = req.body;
+    const user = await sequelize.models.user.update({ ...args }, { where: { id }})
+    const newUser = await sequelize.models.user.findOne({ where: { id }})
+    return res.status(200).json({ data: { newUser }})
+}
+
 module.exports = {
     loginUser,
     createUser,
     deleteUser,
     check,
-    getAllUser
+    getAllUser,
+    getOneUser,
+    updateUser
 }

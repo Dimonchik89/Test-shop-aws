@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { loginUser, createUser, deleteUser, check, getAllUser } = require("../controllers/user");
+const { loginUser, createUser, deleteUser, check, getAllUser, getOneUser, updateUser } = require("../controllers/user");
 const auth = require("../middleware/auth");
 const checkRole = require("../middleware/checkRole");
 
@@ -10,5 +10,7 @@ router.post("/register", createUser)
 router.delete("/:id", checkRole, deleteUser)
 router.get("/check", auth, check)
 router.get("/", getAllUser)
+router.get("/:id", getOneUser)
+router.put("/:id", checkRole, updateUser)
 
 module.exports = router;

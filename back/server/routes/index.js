@@ -7,7 +7,7 @@ const cart = require("./cart");
 
 const router = new Router();
 
-router.use("/device", product)
+router.use("/product", product)
 router.use("/category", category)
 router.use("/type", type)
 router.use("/user", user)
