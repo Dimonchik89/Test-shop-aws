@@ -35,11 +35,7 @@ const router = new Router();
 
 router.get("/", getAllProduct)
 router.get("/:id", getOneProduct)
-router.post("/", checkRole, (req, res, next) => {
-    console.log('req.body:  =============>', req.body);
-    console.log('req:  =============>', req);
-    next()
-},  upload.array('img', 3), createProduct)
+router.post("/", checkRole,  upload.array('img', 3), createProduct)
 router.delete("/:id", checkRole, deleteProduct)
 
 module.exports = router; 

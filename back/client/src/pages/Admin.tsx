@@ -28,12 +28,10 @@ import { AppDispatch } from "../store/store";
 import { Admin as AdminComponent, Resource, fetchUtils, useCreate } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 
-import axios from "axios";
 import "../style/helper.scss";
 
 
 const Admin: React.FC<AdminHeaderProps> = ({ fetchTypes, fetchCategory }) => {
-    const [create] = useCreate();
     const servicesHost = 'http://localhost:5000/api';
 
     const fetchJson = (url: any, options: any = {}) => {
@@ -97,7 +95,7 @@ const Admin: React.FC<AdminHeaderProps> = ({ fetchTypes, fetchCategory }) => {
                 
             {/* </Box> */}
             <AdminComponent dataProvider={myDataProfider} basename="/admin">
-                <Resource name="user" list={AdminUserList} edit={AdminEditUser}/>
+                <Resource name="user" list={AdminUserList} edit={AdminEditUser} create={AdminCreateUser}/>
                 <Resource name="type" list={AdminTypeList} create={AdminCreateType} edit={AdminEditType}/>
                 <Resource name="category" list={AdminCategoryList} create={AdminCreateType} edit={AdminEditType}/>
                 <Resource name="product" list={AdminProductList} create={AdminProductCreate}/>

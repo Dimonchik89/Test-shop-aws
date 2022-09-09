@@ -36,6 +36,7 @@ const loginUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    console.log("req =============== ************************* ", req);
     const { email, password, role="USER" } = req.body;
     
     if(!email || !password) {
@@ -72,7 +73,6 @@ const deleteUser = async (req, res) => {
 
 const getAllUser = async (req, res) => {
     const users = await sequelize.models.user.findAll();
-    // res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count')
     return res.status(200).json(users)
 }
 
